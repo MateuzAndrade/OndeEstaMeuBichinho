@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bichinho extends Model
 {
-    //
-    protected $fillable = ['nome', 'descricao'];
+    protected $fillable = [
+        'nome',
+        'raca',
+        'descricao',
+        'ultimo_local',
+        'foto',
+        'nome_responsavel',
+        'telefone',
+        'email',
+    ];
 }

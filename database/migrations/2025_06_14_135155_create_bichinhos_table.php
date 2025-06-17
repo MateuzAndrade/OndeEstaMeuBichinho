@@ -10,11 +10,14 @@ return new class extends Migration
     {
         Schema::create('bichinhos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome')->nullable();
+            $table->string('nome');
             $table->string('raca')->nullable();
-            $table->string('cor')->nullable();
-            $table->string('detalhesAdicionais')->nullable();
+            $table->text('descricao')->nullable();
+            $table->text('ultimo_local')->nullable();
             $table->string('foto')->nullable();
+            $table->string('nome_responsavel');
+            $table->string('telefone');
+            $table->string('email');
             $table->timestamps();
         });
     }

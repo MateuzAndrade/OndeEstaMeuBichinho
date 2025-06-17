@@ -30,14 +30,27 @@ class BichinhosController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
+            'raca' => 'nullable|string|max:255',
             'descricao' => 'nullable|string',
+            'ultimo_local' => 'nullable|string',
+            'nome_responsavel' => 'required|string|max:255',
+            'telefone' => 'required|string|max:20',
+            'email' => 'required|email|max:255',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // max 10MB
         ]);
+
+        // Upload da foto
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            $path = $request->file('foto')->store('fotos_bichinhos', 'public');
+            $validated['foto'] = $path;
+        }
 
         Bichinho::create($validated);
 
-        return redirect()->route('bichinhos.index')->with('success', 'Bichinho cadastrado com sucesso!');
+        return redirect()->route('home')->with('success', 'Bichinho cadastrado com sucesso!');
     }
 
     /**
