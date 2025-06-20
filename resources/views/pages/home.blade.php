@@ -18,42 +18,25 @@
     <h2 class="text-3xl font-bold text-gray-800">Pets Perdidos Recentes</h2>
 </div>
 <div class="flex flex-wrap justify-center gap-6 my-10 px-4">
+    @forelse ($bichinhos as $bichinho)
     <div class="card bg-base-100 w-96 shadow-sm">
         <figure>
-            <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
+            <img src="{{ $bichinho->foto ? asset('storage/' . $bichinho->foto) : 'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp' }}"
+                alt="Foto do {{ $bichinho->nome }}" />
         </figure>
         <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+            <h2 class="card-title">{{ $bichinho->nome }}</h2>
+            <p>Último local: {{ $bichinho->ultimo_local ?? 'Não informado' }}</p>
+            <!--
             <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
+                <a href="{{ route('bichinhos.show', $bichinho->id) }}" class="btn btn-primary">Ver Detalhes</a>
             </div>
+-->
         </div>
     </div>
-    <div class="card bg-base-100 w-96 shadow-sm">
-        <figure>
-            <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
-            </div>
-        </div>
-    </div>
-    <div class="card bg-base-100 w-96 shadow-sm">
-        <figure>
-            <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
-            </div>
-        </div>
-    </div>
+    @empty
+    <p>Nenhum bichinho perdido recentemente.</p>
+    @endforelse
 </div>
 
 @endsection

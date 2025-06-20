@@ -10,9 +10,10 @@
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><a href=" {{ route('bichinhos.create') }}">Perdi</a></li>
+                <li><a href=" {{ route(name: 'pages.home') }}">Início</a></li>
+                <li><a href=" {{ route(name: 'bichinhos.create') }}">Perdi</a></li>
+                <li><a href="{{ route('bichinhos.mural') }}">Mural</a></li>
                 <li><a>Encontrei</a></li>
-                <li><a>Mural</a></li>
             </ul>
         </div>
         <div class="navbar-end">
